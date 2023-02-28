@@ -15,6 +15,7 @@ public class Calculator {
     boolean isIntNumber = true;
     boolean numHasRadixPoint = false;
     boolean isIntMemory = true;
+    boolean percentageClicked = false;
 
     int counter = 0;
 
@@ -69,31 +70,48 @@ public class Calculator {
         String numbers[];
         switch (operation) {
             case "+":
+                System.out.println("inside pluss");
                 numbers = detailsString.split("\\+");
-                for (String number : numbers) {
-                    result += Double.parseDouble(number);
+                if (percentageClicked) {
+                    result = Double.parseDouble(numbers[0]) + (Double.parseDouble(numbers[0]) * (Double.parseDouble((numbers[1].substring(0, numbers[1].length() - 1))) / 100));
+                } else {
+                    for (String number : numbers) {
+                        result += Double.parseDouble(number);
+                    }
                 }
                 break;
             case "-":
                 numbers = detailsString.split("-");
-                result = Double.parseDouble(numbers[0]);
-                for (int i = 1; i < numbers.length; i++) {
-                    result -= Double.parseDouble(numbers[i]);
+                if (percentageClicked) {
+                    result = Double.parseDouble(numbers[0]) - (Double.parseDouble(numbers[0]) * (Double.parseDouble((numbers[1].substring(0, numbers[1].length() - 1))) / 100));
+                } else {
+                    result = Double.parseDouble(numbers[0]);
+                    for (int i = 1; i < numbers.length; i++) {
+                        result -= Double.parseDouble(numbers[i]);
+                    }
                 }
                 break;
 
             case "*":
                 numbers = detailsString.split("\\*");
-                result = Double.parseDouble(numbers[0]);
-                for (int i = 1; i < numbers.length; i++) {
-                    result *= Double.parseDouble(numbers[i]);
+                if (percentageClicked) {
+                    result = Double.parseDouble(numbers[0]) * (Double.parseDouble(numbers[0]) * (Double.parseDouble((numbers[1].substring(0, numbers[1].length() - 1))) / 100));
+                } else {
+                    result = Double.parseDouble(numbers[0]);
+                    for (int i = 1; i < numbers.length; i++) {
+                        result *= Double.parseDouble(numbers[i]);
+                    }
                 }
                 break;
             case "/":
                 numbers = detailsString.split("/");
-                result = Double.parseDouble(numbers[0]);
-                for (int i = 1; i < numbers.length; i++) {
-                    result /= Double.parseDouble(numbers[i]);
+                if (percentageClicked) {
+                    result = Double.parseDouble(numbers[0]) / (Double.parseDouble(numbers[0]) * (Double.parseDouble((numbers[1].substring(0, numbers[1].length() - 1))) / 100));
+                } else {
+                    result = Double.parseDouble(numbers[0]);
+                    for (int i = 1; i < numbers.length; i++) {
+                        result /= Double.parseDouble(numbers[i]);
+                    }
                 }
                 break;
             case "^":
@@ -142,5 +160,10 @@ public class Calculator {
         numberString = "0";
         detailsString = "";
         intNumber = 0;
+    }
+
+    public void percentage() {
+        percentageClicked = true;
+        detailsString += "%";
     }
 }

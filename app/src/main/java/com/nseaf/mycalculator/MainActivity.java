@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         updateCalcUI();
     }
 
+    public void percentClicked(View view){
+        calculator.percentage();
+        updateCalcUI();
+    }
+
     public void multiplyClicked(View view) {
         calculator.processOperation("*");
         updateCalcUI();

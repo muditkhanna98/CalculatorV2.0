@@ -56,6 +56,7 @@
         app:layout_constraintBottom_toTopOf="@id/cl_operations_buttons"
         app:layout_constraintTop_toBottomOf="@id/v_quarter_vertical">
 
+
         <Button
             android:id="@+id/b_m_plus"
             style="@style/style_calc_button.darker_bg"
@@ -295,6 +296,15 @@
             android:onClick="numberClicked"
             android:text="0"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/b_percentage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/b_percentage"
+            style="@style/style_calc_button"
+            android:onClick="percentClicked"
+            android:text="%"
+            app:layout_constraintLeft_toRightOf="@id/b_0"
             app:layout_constraintRight_toLeftOf="@id/v_center_horizontal"
             app:layout_constraintTop_toTopOf="parent" />
 
