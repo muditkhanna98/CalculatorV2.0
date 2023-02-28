@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.b_9:
                 calculator.processNumber(9);
                 break;
+            case R.id.b_radix_point:
+                calculator.processDecimal();
+                break;
         }
         updateCalcUI();
     }
